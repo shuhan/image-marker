@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Marker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script>
+            var image_url       = '{{ image_url }}';
+            var karnel_size     = {{ karnel_size }};
+            var types           = {{ types|tojson|safe }};
+        </script>
+    </head>
+    <body>
+        <div class="image-marker-instructions">
+
+        </div>
+        <div class="image-marker">
+
+        </div>
+        <div class="image-marker-control">
+            <button class="marker-button previous">< Previous</button>
+            <button class="marker-button next">Next ></button>
+            <button class="marker-button submit">Submit</button>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>

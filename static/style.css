@@ -1,0 +1,81 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.image-marker
+{
+    display: block;
+    margin: 10px auto;
+    line-height: 0px;
+    border: 10px solid #ccc;
+    background-color: blue;
+}
+
+.image-marker-control, .image-marker-instructions {
+    display: block;
+    margin: 10px auto;
+    border: 10px solid #fff;
+    text-align: right;
+}
+
+.image-marker-instructions
+{
+    margin-top: 60px;
+}
+
+.marker-button {
+    padding: 6px 15px;
+}
+
+.marker-button.next {
+
+}
+
+.marker-button.previous {
+
+}
+
+.marker-button.submit {
+
+}
+
+.fraction {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    display: inline-block;
+    background-repeat: no-repeat;
+    border: solid 1px #fff;
+}
+
+.fraction.selected::after {
+    position: absolute;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 21px;
+    margin-top: 34px;
+    color: white;
+}
+
+.fraction.selected {
+    opacity: 0.6;
+}
+
+/* .fraction.selected::after {
+    content: 'S';
+} */
+
+.fraction:hover {
+    opacity: 0.8;
+}
+
+.fraction.selected:hover {
+    opacity: 0.7;
+}

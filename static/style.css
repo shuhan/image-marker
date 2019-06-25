@@ -90,7 +90,7 @@ body {
     content: 'S';
 } */
 
-.fraction:hover {
+.fraction:hover, .fraction.hover{
     opacity: 0.8;
 }
 

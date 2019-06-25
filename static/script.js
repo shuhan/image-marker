@@ -40,9 +40,9 @@ $( document ).ready(function() {
             fraction.style.backgroundImage      = "url('" + window.image_editor.url + "')";
             fraction.style.backgroundPositionX  = '-' + x + 'px';
             fraction.style.backgroundPositionY  = '-' + y + 'px';
-            fraction.className                  = 'fraction sequence-' + sequence;
+            fraction.className                  = 'fraction sequence-' + sequence + ' row_' + r + '_col_' + c;
 
-            fraction.setAttribute('column', c);
+            fraction.setAttribute('col', c);
             fraction.setAttribute('row', r);
             fraction.setAttribute('x', x);
             fraction.setAttribute('y', y);
@@ -68,6 +68,62 @@ $( document ).ready(function() {
             } else {
                 if(window.image_editor.marks[sequence].indexOf(window.image_editor.current_item.name) !== -1) {
                     window.image_editor.marks[sequence].splice(window.image_editor.marks[sequence].indexOf(window.image_editor.current_item.name), 1 );
+                }
+            }
+
+            window.image_editor.start_tile  = null;
+            window.image_editor.end_tile    = null;
+        });
+
+        /**
+         * Handle mouse down on each image tiles
+         */
+        $('.fraction').on('mousedown', function() {
+            window.image_editor.start_tile  = this;
+            window.image_editor.end_tile    = this;
+        });
+
+        /**
+         * Handle mouse up on each image tiles
+         */
+        $(document).on('mouseup', function() {
+            if(window.image_editor.start_tile && window.image_editor.end_tile) {
+
+                var start_column = Math.min($(window.image_editor.start_tile).attr('col'), $(window.image_editor.end_tile).attr('col')),
+                    end_column = Math.max($(window.image_editor.start_tile).attr('col'), $(window.image_editor.end_tile).attr('col')),
+                    start_row = Math.min($(window.image_editor.start_tile).attr('row'), $(window.image_editor.end_tile).attr('row')),
+                    end_row = Math.max($(window.image_editor.start_tile).attr('row'), $(window.image_editor.end_tile).attr('row'));
+
+                if(start_column !== end_column || start_row !== end_row)
+                for(r = start_row; r <= end_row; r++)
+                for(c = start_column; c <= end_column; c++) {
+                    $('.row_' + r + '_col_' + c).click();   //Just simulate a click
+                }
+            }
+            
+            $('.hover').removeClass('hover'); //Remove hover from all
+        });
+
+        /**
+         * Handle mouse move on each image tiles
+         */
+        $('.fraction').on('mousemove', function() {
+            if(window.image_editor.start_tile) {
+
+                window.image_editor.end_tile = this;
+
+                var start_column = Math.min($(window.image_editor.start_tile).attr('col'), $(window.image_editor.end_tile).attr('col')),
+                    end_column = Math.max($(window.image_editor.start_tile).attr('col'), $(window.image_editor.end_tile).attr('col')),
+                    start_row = Math.min($(window.image_editor.start_tile).attr('row'), $(window.image_editor.end_tile).attr('row')),
+                    end_row = Math.max($(window.image_editor.start_tile).attr('row'), $(window.image_editor.end_tile).attr('row'));
+
+                $('.hover').removeClass('hover'); //Remove hover from all
+
+                if(start_column !== end_column || start_row !== end_row)
+                for(r = start_row; r <= end_row; r++)
+                for(c = start_column; c <= end_column; c++) {
+                    if(!$('.row_' + r + '_col_' + c).hasClass('hover'))
+                        $('.row_' + r + '_col_' + c).addClass('hover');
                 }
             }
         });

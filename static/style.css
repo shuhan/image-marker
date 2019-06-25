@@ -3,10 +3,28 @@ body {
     padding: 0px;
 }
 
+/**
+ *  Reusables
+ */
 .hidden
 {
     display: none;
 }
+
+.center {
+    text-align: center;
+}
+
+/**
+ *  Margins
+ */
+ .mt-lg {
+     margin-top: 60px;
+ }
+
+/**
+ *  End Reusables
+ */
 
 .image-marker
 {

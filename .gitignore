@@ -107,3 +107,6 @@ venv.bak/
 static/flight_capture/
 static/marked/
 static/data/
+
+# VS code
+.vscode/

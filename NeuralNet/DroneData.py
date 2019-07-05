@@ -4,7 +4,7 @@ import random
 import json
 import numpy as np
 
-from LabelDict import Dictionary as LDict
+from NeuralNet.LabelDict import Dictionary as LDict
 
 class Loader:
 
@@ -23,7 +23,7 @@ class Loader:
         '''
         process for each image
         '''
-        print("Processing {} ... ".format(image_file)),
+        print("Processing {} ...".format(image_file)),
         with open(config_file, 'r') as json_file:
             config = json.loads(json_file.read())
             
@@ -57,6 +57,7 @@ class Loader:
                     else:
                         self.test_images.append(cropped_img)
                         self.test_labels.append([self.dict.getIndex(cname)])
+        print('done')
 
     def load_data(self):
 

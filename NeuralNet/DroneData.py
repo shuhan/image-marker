@@ -9,12 +9,10 @@ from NeuralNet.LabelDict import Dictionary as LDict
 
 class Loader:
 
-    def __init__(self, dirname, grid_size=60, training_ratio=0.8, test_ratio=0.2, labels=['Obstacle', 'MR.York', 'Vehicle', 'Wall', 'Floor', 'RescueVehicle']):
+    def __init__(self, dirname='', grid_size=60, training_ratio=0.8, test_ratio=0.2, labels=['Obstacle', 'MR.York', 'Vehicle', 'Wall', 'Floor', 'RescueVehicle']):
 
         actual_training_ratio  = training_ratio / (training_ratio + test_ratio)
         actual_test_ratio   = test_ratio / (training_ratio + test_ratio)
-        if not os.path.isdir(dirname):
-            raise NotADirectoryError
         self.data_dir                   = dirname
         self.grid_size                  = grid_size
         self.training_ratio             = actual_training_ratio
@@ -75,6 +73,10 @@ class Loader:
 
         if self.data_loaded:
             return (np.array(self.training_images), np.array(self.training_labels)), (np.array(self.test_images), np.array(self.test_labels))
+        
+        if not os.path.isdir(self.data_dir):
+            raise NotADirectoryError
+
         self.data_loaded    = True
 
         filelist = os.listdir(self.data_dir)

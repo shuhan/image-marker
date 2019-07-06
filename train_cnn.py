@@ -48,7 +48,7 @@ class TrainCNN:
         '''
         loader = Loader(self.in_dir)
 
-        (train_images, train_labels), (test_images, test_labels)  = loader.load_data()
+        (train_images, train_labels), (test_images, test_labels)  = loader.balance_data()
         
         print('Training data shape : ', train_images.shape, train_labels.shape)
         print('Testing data shape : ', test_images.shape, test_labels.shape)

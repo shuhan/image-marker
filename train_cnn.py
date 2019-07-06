@@ -8,6 +8,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import keras
 from keras.utils import to_categorical
+from keras.preprocessing.image import ImageDataGenerator
 import cv2
 
 from NeuralNet.DroneData import Loader
@@ -35,7 +36,7 @@ class TrainCNN:
         self.model_file     = os.path.join(self.model_dir, 'drone_vision_model.json')
         self.weight_file    = os.path.join(self.model_dir, 'drone_vision_weight.h5')
         self.batch_size     = 256
-        self.epochs         = 10
+        self.epochs         = 50
 
     def help(self):
         print("Usages: python train_cnn.py [input_dir] [model_dir]")
@@ -94,6 +95,22 @@ class TrainCNN:
         model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
         model.summary()
 
+        # With Data Generator
+    #     datagen = ImageDataGenerator(
+    # #         zoom_range=0.2, # randomly zoom into images
+    # #         rotation_range=10,  # randomly rotate images in the range (degrees, 0 to 180)
+    #         width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+    #         height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+    #         horizontal_flip=True,  # randomly flip images
+    #         vertical_flip=False)  # randomly flip images
+
+    #     history = model.fit_generator(datagen.flow(train_data, train_labels_one_hot, batch_size=self.batch_size),
+    #                           steps_per_epoch=int(np.ceil(train_data.shape[0] / float(self.batch_size))),
+    #                           epochs=self.epochs,
+    #                           validation_data=(test_data, test_labels_one_hot),
+    #                           workers=4)
+
+        # Without data generator
         history = model.fit(train_data, train_labels_one_hot, batch_size=self.batch_size, epochs=self.epochs, verbose=1, 
                    validation_data=(test_data, test_labels_one_hot))
         model.evaluate(test_data, test_labels_one_hot)

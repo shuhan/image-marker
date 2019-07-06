@@ -131,8 +131,8 @@ class Loader:
         self.width      = width
         self.channels   = channels
 
-        self.cols       = math.floor(self.width / self.grid_size)
-        self.rows       = math.floor(self.height / self.grid_size)
+        self.cols       = int(math.floor(self.width / self.grid_size))
+        self.rows       = int(math.floor(self.height / self.grid_size))
 
         self.x_offset   = int((self.width - (self.cols * self.grid_size)) / 2)
         self.y_offset   = int((self.height - (self.rows * self.grid_size)) / 2)

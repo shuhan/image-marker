@@ -7,11 +7,13 @@ if len(sys.argv) != 2:
     sys.exit()
 
 image_file = sys.argv[1]
+
 K = 8
 
 origImg = cv2.imread(image_file)
 
 img = cv2.cvtColor(origImg, cv2.COLOR_BGR2HSV)
+
 Z = img.reshape((-1,3))
 
 # convert to np.float32

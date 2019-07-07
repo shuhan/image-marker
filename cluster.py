@@ -7,9 +7,11 @@ if len(sys.argv) != 2:
     sys.exit()
 
 image_file = sys.argv[1]
-K = 20
+K = 8
 
-img = cv2.imread(image_file)
+origImg = cv2.imread(image_file)
+
+img = cv2.cvtColor(origImg, cv2.COLOR_BGR2HSV)
 Z = img.reshape((-1,3))
 
 # convert to np.float32
@@ -24,6 +26,10 @@ center = np.uint8(center)
 res = center[label.flatten()]
 res2 = res.reshape((img.shape))
 
-cv2.imshow('res2',res2)
+print(label)
+print(center)
+
+# cv2.imshow("Original", img)
+cv2.imshow('res2', cv2.cvtColor(res2, cv2.COLOR_HSV2BGR))
 cv2.waitKey(0)
 cv2.destroyAllWindows()

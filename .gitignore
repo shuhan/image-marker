@@ -105,7 +105,7 @@ venv.bak/
 
 # don't include image dir
 static/flight_capture/
-static/marked/
+#static/marked/
 static/data/
 
 # VS code

@@ -8,7 +8,7 @@ if len(sys.argv) != 2:
 
 image_file = sys.argv[1]
 
-K = 8
+K = 32
 
 origImg = cv2.imread(image_file)
 

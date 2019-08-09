@@ -3,7 +3,7 @@ import cv2
 import sys
 
 if len(sys.argv) != 2:
-    print("Usages: python bear_finder.py [input_image]")
+    print("Usages: python object_detect.py [input_image]")
     sys.exit()
 
 image_file = sys.argv[1]

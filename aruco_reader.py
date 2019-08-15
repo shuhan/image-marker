@@ -5,9 +5,9 @@ from cv2 import aruco
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-if len(sys.argv) != 2:
-    print("Usages: python cluster.py [input_image]")
-    sys.exit()
+# if len(sys.argv) != 2:
+#     print("Usages: python cluster.py [input_image]")
+#     sys.exit()
 
 # image_file = sys.argv[1]
 
@@ -27,14 +27,52 @@ parameters =  aruco.DetectorParameters_create()
 # plt.legend()
 # plt.show()
 
-fig = plt.figure()
+# Groud Robot Markers 1, 2, 3, 4
+fig1 = plt.figure()
 nx = 2
 ny = 2
 for i in range(1, nx*ny+1):
-    ax = fig.add_subplot(ny,nx, i)
+    ax = fig1.add_subplot(ny,nx, i)
     img = aruco.drawMarker(aruco_dict, i, 700)
     plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
     ax.axis("off")
 
-plt.savefig("static/data/markers.pdf")
+plt.savefig("static/data/ground-robot.pdf")
+
+# MR York Vehicle Marker 10
+fig2 = plt.figure()
+ax = fig2.add_subplot(1, 2, 1)
+img = aruco.drawMarker(aruco_dict, 10, 700)
+plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
+ax.axis("off")
+
+ax = fig2.add_subplot(1, 2, 2)
+img = aruco.drawMarker(aruco_dict, 10, 700)
+plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
+ax.axis("off")
+plt.savefig("static/data/mr-york.pdf")
+
+# Landing Pad
+fig3 = plt.figure()
+ax = fig3.add_subplot(1, 1, 1)
+img = aruco.drawMarker(aruco_dict, 40, 700)
+plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
+ax.axis("off")
+plt.savefig("static/data/landing-pad.pdf")
+
+fig4 = plt.figure()
+ax = fig4.add_subplot(1, 1, 1)
+img = aruco.drawMarker(aruco_dict, 39, 700)
+plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
+ax.axis("off")
+plt.savefig("static/data/east-entry.pdf")
+
+fig5 = plt.figure()
+ax = fig5.add_subplot(1, 1, 1)
+img = aruco.drawMarker(aruco_dict, 41, 700)
+plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
+ax.axis("off")
+plt.savefig("static/data/north-entry.pdf")
+
+
 plt.show()

@@ -29,13 +29,8 @@ parameters =  aruco.DetectorParameters_create()
 
 # Groud Robot Markers 1, 2, 3, 4
 fig1 = plt.figure()
-ax = fig1.add_subplot(1, 2, 1)
-img = aruco.drawMarker(aruco_dict, 4, 700)
-plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
-ax.axis("off")
-
-ax = fig1.add_subplot(1, 2, 2)
-img = aruco.drawMarker(aruco_dict, 4, 700)
+ax = fig1.add_subplot(1, 1, 1)
+img = aruco.drawMarker(aruco_dict, 1, 700)
 plt.imshow(img, cmap = mpl.cm.gray, interpolation = "nearest")
 ax.axis("off")
 plt.savefig("static/data/ground-robot.pdf")

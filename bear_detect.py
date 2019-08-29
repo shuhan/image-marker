@@ -32,8 +32,11 @@ for i in indices:
 
 threash = 90
 
-bear_mask   = cv2.inRange(hsvImage, np.array([16, 64, 60]), np.array([30, 150, 130])) & (expect_mask * 255)
-tshirt_mask = cv2.inRange(hsvImage, np.array([40, 40, 32]), np.array([75, 113, 66])) & (expect_mask * 255)
+bear_mask   = cv2.inRange(hsvImage, np.array([10, 110, 64]), np.array([32, 176, 155])) & (expect_mask * 255)
+tshirt_mask = cv2.inRange(hsvImage, np.array([40, 51, 26]), np.array([77, 95, 61])) & (expect_mask * 255)
+
+# bear_mask   = cv2.inRange(hsvImage, np.array([16, 64, 60]), np.array([30, 150, 130])) & (expect_mask * 255)
+# tshirt_mask = cv2.inRange(hsvImage, np.array([40, 40, 32]), np.array([75, 113, 66])) & (expect_mask * 255)
 
 kernel = np.ones((16,16),np.uint8)
 

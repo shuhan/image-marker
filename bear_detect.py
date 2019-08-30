@@ -44,11 +44,12 @@ _, bear_mask = cv2.threshold(cv2.blur(bear_mask, (5,5)), 127, 255, cv2.THRESH_BI
 
 _, tshirt_mask = cv2.threshold(cv2.blur(tshirt_mask, (5,5)), 127, 255, cv2.THRESH_BINARY)
 tshirt_region = cv2.dilate(tshirt_mask, kernel, iterations=2)
+bear_region   = cv2.dilate(bear_mask, kernel, iterations=2)
 
 bear_found = np.sum(np.bitwise_and(bear_mask, tshirt_region)) > threash
 
 if bear_found:
-    im2, contours, hierarchy = cv2.findContours(tshirt_region, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    im2, contours, hierarchy = cv2.findContours(tshirt_region | bear_region, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     accepted_contures = []
     
     for contour in contours:
@@ -62,5 +63,9 @@ if bear_found:
             cv2.rectangle(origImg, (x, y), (x + w, y + h), (255, 0, 0), 2)
     
     cv2.imshow("Bear Found", origImg)
+    cv2.imshow("Bear Mask", bear_mask)
+    cv2.imshow("T-Shirt Mask", tshirt_mask)
+    cv2.imshow("T-Shirt Region", tshirt_region)
+    cv2.imshow("Combined", tshirt_region | bear_region)
 
 cv2.waitKey(0)
